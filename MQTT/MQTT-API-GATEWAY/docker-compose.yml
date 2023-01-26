@@ -1,0 +1,83 @@
+version: '3.7'
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    hostname: redis
+    ports:
+      - 6379:6379
+    networks:
+      - kiana_net
+  mongo:
+    image: mongo:3.6.15
+    container_name: mongo
+    hostname: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+    restart:
+      always
+    networks:
+      - kiana_net
+  influxdb:
+    image: influxdb:1.7.8
+    container_name: influxdb
+    hostname: influxdb
+    ports:
+    - 8083:8083
+    - 8086:8086
+    volumes:
+      - influxdb:/var/lib/influxdb
+    restart:
+      always
+    networks:
+      - kiana_net
+  kiana:
+    build: .
+    restart: always
+    ports:
+      - 3022:3022
+    links:
+      - influxdb
+    depends_on:
+      - redis
+      - influxdb
+      - mosquitto
+      - mongo
+    environment:
+      WAIT_HOSTS: mosquitto:1883, influxdb:8086, redis:6379, mongo:27017
+    networks:
+      - kiana_net    
+  mosquitto:
+    image: eclipse-mosquitto:1.6.7
+    hostname: mosquitto
+    container_name: mosquitto
+    expose:
+      - 1883
+      - 9001
+    ports:
+      - 1883:1883
+      - 9001:9001
+    networks:
+      - kiana_net
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    ports:
+      - "3010:3000"
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
+    links:
+      - influxdb
+    volumes:
+      - grafana:/var/lib/grafana
+    networks:
+      - kiana_net
+networks:
+  kiana_net:
+volumes:
+  influxdb:
+  mongo:
+  grafana:

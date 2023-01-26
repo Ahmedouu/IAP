@@ -1,0 +1,51 @@
+{
+  "name": "kiana",
+  "version": "1.0.0",
+  "description": "Kiana is API Gateway for a home automation device using MQTT & nodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "prestart": "npm run lint",
+    "lint": "eslint . src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2pai/kiana.git"
+  },
+  "keywords": [
+    "mqtt"
+  ],
+  "author": "2pai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2pai/kiana/issues"
+  },
+  "homepage": "https://github.com/2pai/kiana#readme",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^1.19.4",
+    "axios": "^0.21.1"
+
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "influx": "^5.5.0",
+    "lodash": "^4.17.19",
+    "mongoose": "^5.7.9",
+    "mqtt": "^3.0.0",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.3",
+    "winston": "^3.2.1"
+  }
+}
