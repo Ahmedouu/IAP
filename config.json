@@ -10,8 +10,8 @@
             "type": "default",
             "encrypt": true,
             "options": {
-                "userName": "sqluser",
-                "password": "Pa$$w0rd1234"
+                "userName": "",
+                "password": ""
             }
         }
     },
