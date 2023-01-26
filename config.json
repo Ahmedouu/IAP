@@ -1,0 +1,19 @@
+﻿{
+    "dbName": "smart",
+    "dbConfig": {
+        "server": "sqlserverosa.database.windows.net",
+        "options": {
+            "port": 1433,
+            "trustServerCertificate": true
+        },
+        "authentication": {
+            "type": "default",
+            "encrypt": true,
+            "options": {
+                "userName": "sqluser",
+                "password": "Pa$$w0rd1234"
+            }
+        }
+    },
+    "secret": "6ed4ca6d-b441-4170-84ed-a14800940e38"
+}
