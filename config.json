@@ -1,7 +1,7 @@
 ﻿{
     "dbName": "smart",
     "dbConfig": {
-        "server": "sqlserverosa.database.windows.net",
+        "server": "",
         "options": {
             "port": 1433,
             "trustServerCertificate": true
